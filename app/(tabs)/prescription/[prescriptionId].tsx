@@ -20,9 +20,9 @@ export default function PlantDetails() {
 
   useEffect(() => {
     navigation.setOptions({
-      title: prescription?.medication,
+      title: prescription?.patient,
     });
-  }, [prescription?.medication, navigation]);
+  }, [prescription?.patient, navigation]);
 
   if (!prescription) {
     return (
@@ -38,7 +38,7 @@ export default function PlantDetails() {
     <View style={styles.detailsContainer}>
       <View style={{ alignItems: "center" }}>
         <View style={styles.spacer} />
-        <Text style={styles.key}>Water me every</Text>
+        <Text style={styles.key}>{prescription.medication}</Text>
       </View>
     </View>
   );
@@ -58,29 +58,13 @@ const styles = StyleSheet.create({
     padding: 12,
     backgroundColor: theme.colorWhite,
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   key: {
     marginRight: 8,
     fontSize: 16,
     color: theme.colorBlack,
     textAlign: "center",
-  },
-  value: {
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-    marginBottom: 20,
-    color: theme.colorGreen,
-  },
-  deleteButton: {
-    padding: 12,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  deleteButtonText: {
-    color: theme.colorGrey,
-    fontWeight: "bold",
   },
   spacer: {
     height: 18,

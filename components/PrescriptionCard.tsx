@@ -3,6 +3,28 @@ import { theme } from "@/theme";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
+function statusColor(status: string) {
+  switch (status) {
+    case "active":
+      return {
+        color: theme.colorActive,
+        backgroundColor: "#deeede",
+      };
+
+    case "expired":
+      return {
+        color: theme.colorExpired,
+        backgroundColor: "#f8d0d8",
+      };
+
+    default:
+      return {
+        color: theme.colorPending,
+        backgroundColor: "#DCDCDC",
+      };
+  }
+}
+
 export function PrescriptionCard({
   prescription,
 }: {
@@ -25,6 +47,11 @@ export function PrescriptionCard({
           </Text>
           <Text style={styles.subtitle}>{prescription.medication}</Text>
         </View>
+        <View>
+          <Text style={[statusColor(prescription.status), styles.status]}>
+            {prescription.status}
+          </Text>
+        </View>
       </Pressable>
     </Link>
   );
@@ -36,7 +63,7 @@ const styles = StyleSheet.create({
     shadowColor: theme.colorBlack,
     backgroundColor: theme.colorWhite,
     borderRadius: 6,
-    padding: 12,
+    padding: 6,
     marginBottom: 12,
     shadowOffset: {
       width: 0,
@@ -48,6 +75,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   details: {
+    flex: 1,
     padding: 14,
     justifyContent: "center",
   },
@@ -57,5 +85,12 @@ const styles = StyleSheet.create({
   },
   subtitle: {
     color: theme.colorGrey,
+  },
+  status: {
+    textTransform: "capitalize",
+    textAlign: "center",
+    borderRadius: 6,
+    paddingVertical: 2,
+    paddingHorizontal: 6,
   },
 });
