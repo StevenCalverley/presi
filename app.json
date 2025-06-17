@@ -44,6 +44,12 @@
         "projectId": "94e9e2b9-3c9b-4db2-a509-dcc89e372bed"
       }
     },
-    "owner": "tameablemist"
+    "owner": "tameablemist",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/94e9e2b9-3c9b-4db2-a509-dcc89e372bed"
+    }
   }
 }
