@@ -34,16 +34,16 @@ export default function PlantDetails() {
   return (
     <View style={styles.detailsContainer}>
       <View style={{ alignItems: "center" }}>
-        <View style={styles.spacer} />
         <Text style={styles.prescriptionName}>{prescription.medication}</Text>
+        <Text style={styles.prescriptionStatus}>{prescription.status}</Text>
+        <View style={styles.spacer} />
         <Text style={styles.prescriptionPrescriber}>
           Prescribed by: {prescription.prescriber}
         </Text>
-        <Text style={styles.key}>
+        <Text style={styles.prescriptionPrescribeDate}>
           Date Prescribed:{" "}
           {format(parseISO(prescription.datePrescribed), "dd / MM / yyyy")}
         </Text>
-        <Text style={styles.prescriptionStatus}>{prescription.status}</Text>
       </View>
     </View>
   );
@@ -65,23 +65,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-start",
   },
-  key: {
-    marginRight: 8,
-    fontSize: 16,
-    color: theme.colorBlack,
-    textAlign: "center",
-  },
   spacer: {
     height: 18,
   },
   prescriptionName: {
     fontSize: 18,
-  },
-  prescriptionPrescriber: {
-    color: theme.colorGrey,
+    fontWeight: "800",
   },
   prescriptionStatus: {
-    color: theme.colorBlack,
+    color: theme.colorGrey,
     textTransform: "capitalize",
+    fontSize: 18,
+  },
+  prescriptionPrescriber: {
+    color: theme.colorBlack,
+  },
+  prescriptionPrescribeDate: {
+    color: theme.colorGrey,
   },
 });

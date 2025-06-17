@@ -11,7 +11,7 @@ export default function Layout() {
       <Stack.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Presi",
         }}
       />
       <Stack.Screen
