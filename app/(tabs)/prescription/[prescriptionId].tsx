@@ -11,7 +11,7 @@ export default function Prescription() {
   const prescriptionId = params.prescriptionId;
   const prescription = useStore((state) =>
     state.prescriptions.find(
-      (prescription) => String(prescription.id) === prescriptionId
+      (prescription) => prescription.id === prescriptionId
     )
   );
   const navigation = useNavigation();
