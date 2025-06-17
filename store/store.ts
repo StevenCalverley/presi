@@ -1,6 +1,5 @@
 import Data from "@/data/prescriptions.json";
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
 
 export type Prescription = {
   id: string;
@@ -14,15 +13,27 @@ export type Prescription = {
 
 type PrescriptionState = {
   prescriptions: Prescription[];
+  prescriptionsBy: (status: string) => void;
 };
 
-export const useStore = create(
-  persist<PrescriptionState>(
-    () => ({
-      prescriptions: Data,
-    }),
-    {
-      name: "prescriptions-store",
-    }
-  )
-);
+export const useStore = create<PrescriptionState>((set) => ({
+  prescriptions: Data,
+  prescriptionsBy: (status: string) => {
+    return set((state) => {
+      let prescriptions;
+
+      if (status === "all") {
+        prescriptions = Data;
+      } else {
+        prescriptions = Data.filter(
+          (prescription) => prescription.status === status
+        );
+      }
+
+      return {
+        ...state,
+        prescriptions,
+      };
+    });
+  },
+}));

@@ -7,29 +7,29 @@ function statusColor(status: string) {
   switch (status) {
     case "active":
       return {
-        color: theme.colorActive,
+        color: theme.colorGreen,
         backgroundColor: "#deeede",
       };
 
     case "expired":
       return {
-        color: theme.colorExpired,
+        color: theme.colorRed,
         backgroundColor: "#f8d0d8",
       };
 
     default:
       return {
-        color: theme.colorPending,
+        color: theme.colorGrey,
         backgroundColor: "#DCDCDC",
       };
   }
 }
 
-export function PrescriptionCard({
-  prescription,
-}: {
+type PrescriptionCardProps = {
   prescription: Prescription;
-}) {
+};
+
+export function PrescriptionCard({ prescription }: PrescriptionCardProps) {
   return (
     <Link
       href={{

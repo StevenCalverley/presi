@@ -3,7 +3,6 @@ export const theme = {
   colorBlack: "#000",
   colorLightGrey: "#eee",
   colorGrey: "#808080",
-  colorActive: "#228B22",
-  colorExpired: "#DC143C",
-  colorPending: "#333333",
+  colorGreen: "#228B22",
+  colorRed: "#DC143C",
 };
