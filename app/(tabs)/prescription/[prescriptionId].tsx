@@ -1,14 +1,11 @@
 import { useStore } from "@/store/store";
 import { theme } from "@/theme";
-import { useLocalSearchParams, useNavigation, useRouter } from "expo-router";
+import { format, parseISO } from "date-fns";
+import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const fullDateFormat = "LLL d yyyy, h:mm aaa";
-
 export default function PlantDetails() {
-  const router = useRouter();
-
   const params = useLocalSearchParams();
   const prescriptionId = params.prescriptionId;
   const prescription = useStore((state) =>
@@ -38,7 +35,15 @@ export default function PlantDetails() {
     <View style={styles.detailsContainer}>
       <View style={{ alignItems: "center" }}>
         <View style={styles.spacer} />
-        <Text style={styles.key}>{prescription.medication}</Text>
+        <Text style={styles.prescriptionName}>{prescription.medication}</Text>
+        <Text style={styles.prescriptionPrescriber}>
+          Prescribed by: {prescription.prescriber}
+        </Text>
+        <Text style={styles.key}>
+          Date Prescribed:{" "}
+          {format(parseISO(prescription.datePrescribed), "dd / MM / yyyy")}
+        </Text>
+        <Text style={styles.prescriptionStatus}>{prescription.status}</Text>
       </View>
     </View>
   );
@@ -68,5 +73,15 @@ const styles = StyleSheet.create({
   },
   spacer: {
     height: 18,
+  },
+  prescriptionName: {
+    fontSize: 18,
+  },
+  prescriptionPrescriber: {
+    color: theme.colorGrey,
+  },
+  prescriptionStatus: {
+    color: theme.colorBlack,
+    textTransform: "capitalize",
   },
 });
