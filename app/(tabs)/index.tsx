@@ -2,7 +2,7 @@ import { PrescriptionCard } from "@/components/PrescriptionCard";
 import { StatusDropdown } from "@/components/StatusDropdown";
 import { useStore } from "@/store/store";
 import { theme } from "@/theme";
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
   const prescriptions = useStore((state) => state.prescriptions);
@@ -20,6 +20,11 @@ export default function App() {
       contentContainerStyle={styles.contentContainer}
       data={prescriptions}
       renderItem={({ item }) => <PrescriptionCard prescription={item} />}
+      ListEmptyComponent={
+        <View style={styles.listEmptyContainer}>
+          <Text>Your prescription list is empty</Text>
+        </View>
+      }
       ListHeaderComponent={
         <StatusDropdown
           data={["Active", "Expired", "Pending"]}
@@ -37,5 +42,10 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     padding: 12,
+  },
+  listEmptyContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 18,
   },
 });
