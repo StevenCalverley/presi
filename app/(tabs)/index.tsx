@@ -1,4 +1,5 @@
 import { PrescriptionCard } from "@/components/PrescriptionCard";
+import SearchBar from "@/components/SearchBar";
 import { StatusDropdown } from "@/components/StatusDropdown";
 import { useStore } from "@/store/store";
 import { theme } from "@/theme";
@@ -26,10 +27,17 @@ export default function App() {
         </View>
       }
       ListHeaderComponent={
-        <StatusDropdown
-          data={["Active", "Expired", "Pending"]}
-          onSelect={handleSelect}
-        />
+        <View style={[styles.container, styles.headerContainer]}>
+          <View style={styles.headerContainer}>
+            <SearchBar />
+          </View>
+          <View>
+            <StatusDropdown
+              data={["Active", "Expired", "Pending"]}
+              onSelect={handleSelect}
+            />
+          </View>
+        </View>
       }
     />
   );
@@ -41,7 +49,11 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colorWhite,
   },
   contentContainer: {
-    padding: 12,
+    padding: 6,
+  },
+  headerContainer: {
+    flex: 1,
+    flexDirection: "row",
   },
   listEmptyContainer: {
     justifyContent: "center",

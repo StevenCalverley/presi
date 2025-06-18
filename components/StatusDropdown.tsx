@@ -33,19 +33,21 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={toggleModal}>
-        <Text style={styles.buttonText}>
-          {selectedValue
-            ? `Filtered to ${selectedValue}`
-            : "Select a status to filter"}
-        </Text>
-      </TouchableOpacity>
-
-      {selectedValue && (
-        <TouchableOpacity style={styles.closeButton} onPress={handleClear}>
-          <Text style={styles.closeText}>Clear</Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity style={styles.button} onPress={toggleModal}>
+          <Text style={styles.buttonText}>
+            {selectedValue
+              ? `Filtered to ${selectedValue}`
+              : "Select a status to filter"}
+          </Text>
         </TouchableOpacity>
-      )}
+
+        {selectedValue && (
+          <TouchableOpacity style={styles.closeButton} onPress={handleClear}>
+            <Text style={styles.closeText}>Clear</Text>
+          </TouchableOpacity>
+        )}
+      </View>
 
       <Modal visible={isModalVisible} transparent animationType="fade">
         <View style={styles.modalBackground}>
@@ -74,7 +76,11 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 20,
+    margin: 12,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: "row",
   },
   button: {
     padding: 14,
@@ -106,8 +112,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   closeButton: {
-    marginTop: 12,
-    padding: 12,
+    padding: 14,
+    marginLeft: 4,
     backgroundColor: theme.colorRed,
     borderRadius: 6,
   },
