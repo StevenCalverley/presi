@@ -4,7 +4,7 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 
 ## Expo Preview
 
-[Expo Preview](https://expo.dev/preview/update?message=Improvements%20to%20UI%20and%20Code&updateRuntimeVersion=1.0.0&createdAt=2025-06-19T23%3A04%3A33.911Z&slug=exp&projectId=94e9e2b9-3c9b-4db2-a509-dcc89e372bed&group=86d2774f-9fd1-4ec2-b364-ee3d4b45f1ca)
+[Expo Preview](https://expo.dev/preview/update?message=%5BFeature%5D%20Add%20sort%0A-%20add%20sort%20component%0A-%20add%20sort%20functionality%0A-%20add%20parsing%20data%20to%20handle%20dates%20better&updateRuntimeVersion=1.0.0&createdAt=2025-06-19T23%3A44%3A35.590Z&slug=exp&projectId=94e9e2b9-3c9b-4db2-a509-dcc89e372bed&group=c02cf668-1f1a-4939-ba6a-9e4ee066be3c)
 
 ## Get started
 
@@ -33,6 +33,10 @@ You can start developing by editing the files inside the **app** directory. This
 
 The sample data is formatted and correct.
 The sample data represents the desired output for the user. No transformation expect for date formating applied - assuming display to dd / MM / yyyy
+
+Updated
+
+- Added parsing the raw prescription data to support state management
 
 ## Architectire and state approach
 
