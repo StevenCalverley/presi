@@ -2,6 +2,10 @@
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app) for the purpose of a react native assessment
 
+## Expo Preview
+
+[Expo Preview](https://expo.dev/preview/update?message=Improvements%20to%20UI%20and%20Code&updateRuntimeVersion=1.0.0&createdAt=2025-06-19T23%3A04%3A33.911Z&slug=exp&projectId=94e9e2b9-3c9b-4db2-a509-dcc89e372bed&group=86d2774f-9fd1-4ec2-b364-ee3d4b45f1ca)
+
 ## Get started
 
 1. Install dependencies
