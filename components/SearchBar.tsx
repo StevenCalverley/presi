@@ -3,13 +3,16 @@ import { theme } from "@/theme";
 import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { Button } from "./Button";
+import { Sort } from "./Sort";
 import { StatusDropdown } from "./StatusDropdown";
 
 export default function SearchBar() {
   const [value, setValue] = useState<string>();
+  const [isSorted, setIsSorted] = useState(false); //TODO: move this logic to the store
 
   const prescriptionsBy = useStore((state) => state.prescriptionsBy);
   const filter = useStore((state) => state.filter);
+  const sort = useStore((state) => state.sort);
   const reset = useStore((state) => state.reset);
 
   const handleSubmit = () => {
@@ -24,8 +27,14 @@ export default function SearchBar() {
     }
   };
 
+  const handleSort = () => {
+    setIsSorted((prevIsSorted) => !prevIsSorted);
+    sort(!isSorted);
+  };
+
   const handleClear = () => {
     setValue(undefined);
+    setIsSorted(false);
     reset();
   };
 
@@ -43,6 +52,7 @@ export default function SearchBar() {
         data={["Active", "Expired", "Pending"]}
         onSelect={handleSelect}
       />
+      <Sort onSelect={handleSort} />
       <Button title="Clear" onPress={handleClear} />
     </View>
   );

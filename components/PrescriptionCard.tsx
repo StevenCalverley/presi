@@ -1,5 +1,6 @@
-import { Prescription } from "@/store/store";
+import { ParsedPrescription } from "@/store/store";
 import { theme } from "@/theme";
+import { format } from "date-fns";
 import { Link } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -26,7 +27,7 @@ function statusColor(status: string) {
 }
 
 type PrescriptionCardProps = {
-  prescription: Prescription;
+  prescription: ParsedPrescription;
 };
 
 export function PrescriptionCard({ prescription }: PrescriptionCardProps) {
@@ -46,6 +47,9 @@ export function PrescriptionCard({ prescription }: PrescriptionCardProps) {
             {prescription.patient}
           </Text>
           <Text style={styles.subtitle}>{prescription.medication}</Text>
+          <Text style={styles.prescribeDate}>
+            {format(prescription.parsedDatePrescribed, "dd MMM yy")}
+          </Text>
         </View>
         <View>
           <Text style={[statusColor(prescription.status), styles.status]}>
@@ -92,5 +96,9 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingVertical: 2,
     paddingHorizontal: 6,
+  },
+  prescribeDate: {
+    color: theme.colorGrey,
+    fontSize: 12,
   },
 });

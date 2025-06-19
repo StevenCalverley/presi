@@ -1,10 +1,10 @@
-import { Prescription } from "@/store/store";
+import { ParsedPrescription } from "@/store/store";
 import { theme } from "@/theme";
-import { format, parseISO } from "date-fns";
+import { format } from "date-fns";
 import { StyleSheet, Text, View } from "react-native";
 
 type PrescriptionDetailsProps = {
-  prescription: Prescription;
+  prescription: ParsedPrescription;
 };
 export default function PrescriptionDetails({
   prescription,
@@ -19,7 +19,7 @@ export default function PrescriptionDetails({
       </Text>
       <Text style={styles.prescriptionPrescribeDate}>
         Date Prescribed:{" "}
-        {format(parseISO(prescription.datePrescribed), "dd / MM / yyyy")}
+        {format(prescription.parsedDatePrescribed, "dd / MM / yyyy")}
       </Text>
     </View>
   );
