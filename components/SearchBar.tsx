@@ -3,10 +3,12 @@ import { theme } from "@/theme";
 import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { Button } from "./Button";
+import { StatusDropdown } from "./StatusDropdown";
 
 export default function SearchBar() {
   const [value, setValue] = useState<string>();
 
+  const prescriptionsBy = useStore((state) => state.prescriptionsBy);
   const filter = useStore((state) => state.filter);
   const reset = useStore((state) => state.reset);
 
@@ -16,7 +18,13 @@ export default function SearchBar() {
     }
   };
 
-  const handleReset = () => {
+  const handleSelect = (status: string) => {
+    if (status) {
+      prescriptionsBy(status.toLowerCase());
+    }
+  };
+
+  const handleClear = () => {
     setValue(undefined);
     reset();
   };
@@ -31,7 +39,11 @@ export default function SearchBar() {
         onSubmitEditing={handleSubmit}
         returnKeyType="done"
       />
-      {value && <Button title="Clear" onPress={handleReset} />}
+      <StatusDropdown
+        data={["Active", "Expired", "Pending"]}
+        onSelect={handleSelect}
+      />
+      <Button title="Clear" onPress={handleClear} />
     </View>
   );
 }
@@ -41,6 +53,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     margin: 12,
+    gap: 4,
   },
   textInput: {
     flex: 1,

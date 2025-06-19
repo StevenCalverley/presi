@@ -1,4 +1,5 @@
 import { theme } from "@/theme";
+import AntDesign from "@expo/vector-icons/AntDesign";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -9,7 +10,6 @@ import {
   View,
 } from "react-native";
 import { Button } from "./Button";
-
 type StatusDropdownProps = {
   data: string[];
   onSelect: (status: string) => void;
@@ -17,38 +17,30 @@ type StatusDropdownProps = {
 
 export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
   const [isModalVisible, setModalVisible] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
   const toggleModal = () => setModalVisible(!isModalVisible);
 
   const handleSelect = (item: string) => {
-    setSelectedValue(item);
     onSelect(item);
     toggleModal();
-  };
-
-  const handleClear = () => {
-    setSelectedValue(null);
-    onSelect("all");
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={toggleModal}>
-          <Text style={styles.buttonText}>
-            {selectedValue
-              ? `Filtered to ${selectedValue}`
-              : "Select a status to filter"}
-          </Text>
+          <AntDesign name="search1" size={18} color="white" />
         </TouchableOpacity>
-
-        {selectedValue && <Button title="Clear" onPress={handleClear} />}
       </View>
 
       <Modal visible={isModalVisible} transparent animationType="fade">
         <View style={styles.modalBackground}>
           <View style={styles.modalContent}>
+            <View style={styles.modalHeader}>
+              <Text style={styles.modalHeaderText}>
+                Filter by Prescription Status
+              </Text>
+            </View>
             <FlatList
               data={data}
               keyExtractor={(_item, index) => index.toString()}
@@ -61,7 +53,9 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
                 </TouchableOpacity>
               )}
             />
-            <Button title="Close" onPress={toggleModal} />
+            <View style={styles.modalFooter}>
+              <Button title="Close" onPress={toggleModal} />
+            </View>
           </View>
         </View>
       </Modal>
@@ -70,9 +64,7 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    margin: 12,
-  },
+  container: {},
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
@@ -83,10 +75,7 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colorGreen,
     borderRadius: 6,
   },
-  buttonText: {
-    color: theme.colorWhite,
-    textAlign: "center",
-  },
+
   modalBackground: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -99,6 +88,13 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 12,
   },
+  modalHeader: {
+    margin: 12,
+  },
+  modalHeaderText: {
+    fontSize: 18,
+    fontWeight: "700",
+  },
   option: {
     padding: 12,
     borderBottomWidth: 1,
@@ -106,5 +102,8 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
+  },
+  modalFooter: {
+    margin: 12,
   },
 });
