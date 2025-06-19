@@ -25,19 +25,11 @@ export const useStore = create<PrescriptionState>((set) => ({
   },
   prescriptionsBy: (status: string) => {
     return set((state) => {
-      let prescriptions;
-
-      if (status === "all") {
-        prescriptions = Data;
-      } else {
-        prescriptions = Data.filter(
-          (prescription) => prescription.status === status
-        );
-      }
-
       return {
         ...state,
-        prescriptions,
+        prescriptions: state.prescriptions.filter(
+          (prescription) => prescription.status === status
+        ),
       };
     });
   },
