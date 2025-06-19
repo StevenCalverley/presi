@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Button } from "./Button";
 
 type StatusDropdownProps = {
   data: string[];
@@ -42,11 +43,7 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
           </Text>
         </TouchableOpacity>
 
-        {selectedValue && (
-          <TouchableOpacity style={styles.closeButton} onPress={handleClear}>
-            <Text style={styles.closeText}>Clear</Text>
-          </TouchableOpacity>
-        )}
+        {selectedValue && <Button title="Clear" onPress={handleClear} />}
       </View>
 
       <Modal visible={isModalVisible} transparent animationType="fade">
@@ -64,9 +61,7 @@ export const StatusDropdown = ({ data, onSelect }: StatusDropdownProps) => {
                 </TouchableOpacity>
               )}
             />
-            <TouchableOpacity style={styles.closeButton} onPress={toggleModal}>
-              <Text style={styles.closeText}>Close</Text>
-            </TouchableOpacity>
+            <Button title="Close" onPress={toggleModal} />
           </View>
         </View>
       </Modal>
@@ -81,6 +76,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     flexDirection: "row",
+    gap: 12,
   },
   button: {
     padding: 14,
@@ -110,15 +106,5 @@ const styles = StyleSheet.create({
   },
   optionText: {
     fontSize: 16,
-  },
-  closeButton: {
-    padding: 14,
-    marginLeft: 4,
-    backgroundColor: theme.colorRed,
-    borderRadius: 6,
-  },
-  closeText: {
-    color: "white",
-    textAlign: "center",
   },
 });

@@ -6,7 +6,7 @@ type Props = {
   onPress: () => void;
 };
 
-export function ClearButton({ title, onPress }: Props) {
+export function Button({ title, onPress }: Props) {
   const handlePressed = () => {
     if (Platform.OS !== "web") {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);

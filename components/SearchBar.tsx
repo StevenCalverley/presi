@@ -2,7 +2,7 @@ import { useStore } from "@/store/store";
 import { theme } from "@/theme";
 import { useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { ClearButton } from "./ClearButton";
+import { Button } from "./Button";
 
 export default function SearchBar() {
   const [value, setValue] = useState<string>();
@@ -31,7 +31,7 @@ export default function SearchBar() {
         onSubmitEditing={handleSubmit}
         returnKeyType="done"
       />
-      {value && <ClearButton title="Clear" onPress={handleReset} />}
+      {value && <Button title="Clear" onPress={handleReset} />}
     </View>
   );
 }
