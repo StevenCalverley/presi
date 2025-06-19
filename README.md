@@ -32,6 +32,17 @@ The sample data represents the desired output for the user. No transformation ex
 
 ## Architectire and state approach
 
+### Navigation
+
+Implemented structure to support expansion. Currently the app requires a list of prescriptions with a single view page.
+The implemented structure has the following advantages
+
+1. Deep Linking - this allows future notifications/URLs to link to a single prescription page via id
+2. Scale - The structure supports a themed approach where prescriptions is a dedicated area (Normally a tab) which then allows for support of other areas e.g a profile page
+   - Implementing a tabbed navigation will support multiple areas
+
+### State Management
+
 Implemented state mangement via zustand to support scalbility as the app is build out to allow CRUD operations
 This will provide a single source for managing the state across the app.
 As the app progress to use a backend API for data this will also provide a central location for managing the interaction to the sever.
